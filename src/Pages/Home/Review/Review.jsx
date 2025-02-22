@@ -1,21 +1,17 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
+import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
 
 const Review = () => {
   const axiosPublic = useAxiosPublic();
 
-  const { 
-    isLoading, 
-    error, 
-    data: reviews 
-  } = useQuery({
+  const { isLoading, error, data: reviews } = useQuery({
     queryKey: ['reviews'],
     queryFn: async () => {
       const res = await axiosPublic.get('/reviews'); 
@@ -36,7 +32,7 @@ const Review = () => {
   return (
     <section className='my-12'>
         <div>
-            <h2 className='text-center font-bold underline text-3xl'>Reviews</h2>
+          <SectionTitle heading="Reviews"></SectionTitle>
         </div>
       <div>
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">

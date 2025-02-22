@@ -7,15 +7,10 @@ import { Helmet } from "react-helmet-async";
 const Dashboard = () => {
 
     const [isAdmin] = useAdmins();
+    // const isAdmin = true;
 
     const menu = isAdmin ? (
         <>
-            <li>
-                <NavLink to="/dashboard/adminHome">
-                    <FaHome></FaHome>
-                    Admin Home
-                </NavLink>
-            </li>
             <li>
                 <NavLink to="/dashboard/users">
                     <FaUser></FaUser>
@@ -29,7 +24,7 @@ const Dashboard = () => {
                 </NavLink>
             </li>
             <li>
-                <NavLink to="/dashboard/all_donations">
+                <NavLink to="/dashboard/donations">
                     <FaCoins></FaCoins>
                     All Donations
                 </NavLink>
@@ -44,7 +39,7 @@ const Dashboard = () => {
                 </NavLink>
             </li>
             <li>
-                <NavLink to="/dashboard/pet_history">
+                <NavLink to="/dashboard/myAddedPets">
                     <FaCat></FaCat>
                     My Added Pets
                 </NavLink>
@@ -68,7 +63,7 @@ const Dashboard = () => {
                 </NavLink>
             </li>
             <li>
-                <NavLink to="/dashboard/donation">
+                <NavLink to="/dashboard/myDonation">
                     <FaDonate></FaDonate>
                     My Donation
                 </NavLink>
@@ -83,10 +78,13 @@ const Dashboard = () => {
             </Helmet>
             <div className="flex">
                 {/* dashboard sidebar */}
-                <div className="w-64 min-h-screen bg-black opacity-70 text-white">
+                <div className="w-64 min-h-screen bg-black opacity-80 text-white">
                     <ul className="menu p-4">
                         {menu}
+
                         <div className="divider"></div>
+
+                        {/* shared navlink */}
                         <li>
                             <NavLink to="/">
                                 <FaHome></FaHome>

@@ -1,4 +1,6 @@
-const PetCard = ({ pet, onViewDetails }) => {
+import { Link } from "react-router-dom";
+
+const PetCard = ({ pet }) => {
     return (
         <div className="bg-white p-4 rounded-xl shadow-2xl border-gray-700">
             <img
@@ -13,12 +15,13 @@ const PetCard = ({ pet, onViewDetails }) => {
             <p className="text-lg mt-2">
                 <span className="font-bold">Location:</span> {pet.location}
             </p>
-            <button
-                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-4 rounded-xl"
-                onClick={onViewDetails}
-            >
-                View Details
-            </button>
+            <Link to={`/pet_details/${pet._id}`}>
+                <button
+                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-4 rounded-xl"
+                >
+                    View Details
+                </button>
+            </Link>
         </div>
     );
 };

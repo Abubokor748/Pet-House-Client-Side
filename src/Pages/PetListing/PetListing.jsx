@@ -2,15 +2,14 @@ import { useState } from "react";
 import PetListingBanner from "../../Components/PetListingBanner/PetListingBanner";
 import PetCard from "../../Components/PetCard/PetCard";
 import usePets from "../../Hooks/usePets";
-import AdoptionModal from "../../Components/AdoptionModal/AdoptionModal";
-import PrivateRoute from "../../Router/PrivateRoute";
 import { Helmet } from "react-helmet-async";
+import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 
 const PetListing = () => {
     const [pets, loading] = usePets();
     const [searchTerm, setSearchTerm] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("");
-    const [selectedPet, setSelectedPet] = useState(null); // Modal data
+    const [selectedPet, setSelectedPet] = useState(null); 
 
     const handleSearchChange = (e) => setSearchTerm(e.target.value);
     const handleCategoryChange = (e) => setCategoryFilter(e.target.value);
@@ -18,9 +17,7 @@ const PetListing = () => {
     const filteredPets = pets
         .filter((pet) =>
             pet.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-            (!categoryFilter || pet.category === categoryFilter)
-        )
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Assuming createdAt exists
+            (!categoryFilter || pet.category === categoryFilter)).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     if (loading) {
         return (
@@ -36,7 +33,9 @@ const PetListing = () => {
                 <title>Pet House | Pet Listing</title>
             </Helmet>
             <PetListingBanner />
-            <h2 className="text-center text-3xl my-5 py-5 underline">All the Pets</h2>
+            <div  className="my-5 py-5">
+                <SectionTitle heading="Pets"></SectionTitle>
+            </div>
 
             <div className="flex justify-between items-center px-4 mb-5">
                 <input
@@ -64,14 +63,6 @@ const PetListing = () => {
                     <PetCard key={pet._id} pet={pet} onViewDetails={() => setSelectedPet(pet)} />
                 ))}
             </div>
-
-            {/* Adoption Modal */}
-            {selectedPet && (<PrivateRoute>
-                <AdoptionModal
-                    pet={selectedPet}
-                    onClose={() => setSelectedPet(null)}
-                /></PrivateRoute>
-            )}
         </div>
     );
 };

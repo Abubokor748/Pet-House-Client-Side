@@ -6,19 +6,12 @@ import useAuth from '../../Hooks/useAuth';
 import SocialLogin from '../../Components/SocialLogin/SocialLogin';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
-// const imageHostingKey =  import.meta.env.VITE_IMAGE_HOSTING_KEY;
-// const imageHostingAPI = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`; this will go add pets for adoption
 const SignUp = () => {
-
-
     const axiosPublic = useAxiosPublic();
-
     const navigate = useNavigate();
-
     const { createUser, updateUserProfile } = useAuth();
 
     const { register, handleSubmit, reset, formState: { errors }, } = useForm();
-
     const onSubmit = (data) => {
         // console.log(data);
         createUser(data.email, data.password)
@@ -27,8 +20,6 @@ const SignUp = () => {
                 console.log(loggedUser);
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        // console.log('user profile info updated');
-                        // create user entry in database
                         const userInfo = {
                             name: data.name,
                             email: data.email,

@@ -1,4 +1,5 @@
 import usePets from "../../Hooks/usePets";
+import SectionTitle from "../SectionTitle/SectionTitle";
 
 const HomePets = () => {
     const [pets, loading] = usePets();
@@ -9,15 +10,15 @@ const HomePets = () => {
     </div>
 
     return (
-        <div>
-            <div>
-                <h2 className='text-center text-3xl my-5 py-5 underline'>Featured Pets</h2>
+        <div className="my-10">
+            <div className="mx-auto text-center">
+                <SectionTitle heading="🐶 Featured Pets 🐱"></SectionTitle>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 m-3 p-3">
                 {pets.slice(0, 6).map((pet) => (
-                    <div key={pet._id} className="bg-white p-4 rounded-xl shadow-2xl border-gray-700">
+                    <div key={pet._id} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl border border-gray-300">
                         <img src={pet.image} alt={pet.name} className="w-full h-80 object-cover mt-2 rounded-2xl mb-2" />
-                        <h3 className="text-2xl font-bold">Pet Name: {pet.name}</h3>
+                        <h3 className="text-2xl font-bold text-gray-700">Pet Name: {pet.name}</h3>
                         <p className="text-lg mt-2"><span className='font-bold'>Pet Description: </span>{pet.description}</p>
 
                         <div className='flex gap-15'>
