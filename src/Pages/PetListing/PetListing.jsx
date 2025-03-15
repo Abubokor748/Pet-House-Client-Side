@@ -9,7 +9,7 @@ const PetListing = () => {
     const [pets, loading] = usePets();
     const [searchTerm, setSearchTerm] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("");
-    const [selectedPet, setSelectedPet] = useState(null); 
+    const [selectedPet, setSelectedPet] = useState(null);
 
     const handleSearchChange = (e) => setSearchTerm(e.target.value);
     const handleCategoryChange = (e) => setCategoryFilter(e.target.value);
@@ -33,35 +33,38 @@ const PetListing = () => {
                 <title>Pet House | Pet Listing</title>
             </Helmet>
             <PetListingBanner />
-            <div  className="my-5 py-5">
-                <SectionTitle heading="Pets"></SectionTitle>
-            </div>
 
-            <div className="flex justify-between items-center px-4 mb-5">
-                <input
-                    type="text"
-                    placeholder="Search by pet name..."
-                    className="border p-2 rounded-md w-1/2"
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                />
-                <select
-                    className="border p-2 rounded-md"
-                    value={categoryFilter}
-                    onChange={handleCategoryChange}
-                >
-                    <option value="">All Categories</option>
-                    <option value="Cat">Cat</option>
-                    <option value="Dog">Dog</option>
-                    <option value="Rabbit">Rabbit</option>
-                    <option value="Fish">Fish</option>
-                </select>
-            </div>
+            <div className="max-w-screen-2xl mx-auto">
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 m-3 p-3">
-                {filteredPets.map((pet) => (
-                    <PetCard key={pet._id} pet={pet} onViewDetails={() => setSelectedPet(pet)} />
-                ))}
+                <div className="my-5 py-5">
+                    <SectionTitle heading="Pets"></SectionTitle>
+                </div>
+                <div className="flex justify-between items-center px-4 mb-5">
+                    <input
+                        type="text"
+                        placeholder="Search by pet name..."
+                        className="border p-2 rounded-md w-1/2"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                    />
+                    <select
+                        className="border p-2 rounded-md"
+                        value={categoryFilter}
+                        onChange={handleCategoryChange}
+                    >
+                        <option value="">All Categories</option>
+                        <option value="Cat">Cat</option>
+                        <option value="Dog">Dog</option>
+                        <option value="Rabbit">Rabbit</option>
+                        <option value="Fish">Fish</option>
+                    </select>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 m-3 p-3">
+                    {filteredPets.map((pet) => (
+                        <PetCard key={pet._id} pet={pet} onViewDetails={() => setSelectedPet(pet)} />
+                    ))}
+                </div>
             </div>
         </div>
     );

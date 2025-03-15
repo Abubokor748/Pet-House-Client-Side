@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logoPic from '../../../assets/logoPicture.jpg'
 import avaterPic from '../../../assets/dpForNoPic.jpg'
 import useAuth from '../../../Hooks/useAuth';
@@ -15,16 +15,38 @@ const Navbar = () => {
 
     const menu = <>
         <li>
-            <Link to="/" className="hover:text-blue-500 transition duration-300 text-xl">Home</Link>
+            <NavLink
+                to="/"
+                className={({ isActive }) =>
+                    `hover:text-blue-500 transition duration-300 text-xl ${isActive ? 'text-blue-500' : 'text-white'}`
+                }
+            >
+                Home
+            </NavLink>
         </li>
         <li>
-            <Link to="/pet_listing" className="hover:text-blue-500 transition duration-300 text-xl">Pet Listing</Link>
+            <NavLink
+                to="/pet_listing"
+                className={({ isActive }) =>
+                    `hover:text-blue-500 transition duration-300 text-xl ${isActive ? 'text-blue-500' : 'text-white'}`}>
+                Pet Listing
+            </NavLink>
         </li>
         <li>
-            <Link to="/donation" className="hover:text-blue-500 transition duration-300 text-xl">Donation Campaigns</Link>
+            <NavLink
+                to="/donation"
+                className={({ isActive }) =>
+                    `hover:text-blue-500 transition duration-300 text-xl ${isActive ? 'text-blue-500' : 'text-white'}`}>
+                Donation Campaign
+            </NavLink>
         </li>
         <li>
-            <Link to="/dashboard/add_pet" className="hover:text-blue-500 transition duration-300 text-xl">DashBoard</Link>
+            <NavLink
+                to="/dashboard"
+                className={({ isActive }) =>
+                    `hover:text-blue-500 transition duration-300 text-xl ${isActive ? 'text-blue-500' : 'text-white'}`}>
+                Dashboard
+            </NavLink>
         </li>
 
         {
@@ -36,9 +58,12 @@ const Navbar = () => {
                 </li>
             </> : <>
                 <li>
-                    <Link to="/login" className="hover:text-blue-500 transition duration-300 text-xl">
+                    <NavLink
+                        to="/login"
+                        className={({ isActive }) =>
+                            `hover:text-blue-500 transition duration-300 text-xl ${isActive ? 'text-blue-500' : 'text-white'}`}>
                         Login
-                    </Link>
+                    </NavLink>
                 </li>
             </>
         }
@@ -46,7 +71,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <div className="navbar max-w-screen-2xl fixed z-10  bg-gradient-to-r from-black to-gray-600 shadow-lg text-white">
+            <div className="navbar fixed z-10  bg-gradient-to-r from-black to-gray-600 shadow-lg text-white">
 
                 {/* navbar start */}
                 <div className="navbar-start">
@@ -74,7 +99,7 @@ const Navbar = () => {
                         <Link to="/">
                             <img src={logoPic} alt="" className='w-14 rounded-full' />
                         </Link>
-                        <h2 className='text-2xl italic text-white'>Pet House</h2>
+                        <h2 className='md:text-2xl italic text-white'>Pet House</h2>
                     </div>
                 </div>
 
@@ -116,7 +141,7 @@ const Navbar = () => {
                             </li>
                             <li>
                                 {
-                                    user ? <> 
+                                    user ? <>
                                         <div>
                                             <Link className='hover:text-blue-500 transition duration-300 text-xl' onClick={handleLogOut}>
                                                 Log Out

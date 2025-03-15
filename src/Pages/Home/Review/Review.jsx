@@ -30,7 +30,7 @@ const Review = () => {
   }
 
   return (
-    <section className='my-12'>
+    <section className='my-12 max-w-screen-2xl mx-auto'>
         <div>
           <SectionTitle heading="Reviews"></SectionTitle>
         </div>
